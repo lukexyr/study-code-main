@@ -5,7 +5,7 @@
 
 
 char checkPalindrom(char* palindrom, int size) {
-    for (int i = 0; i <= size/2; i++)
+    for (int i = 0; i <= (int)(size/2); i++)
     {
         if(tolower(palindrom[i]) != tolower(palindrom[size-i-1])) {
             return 0;
