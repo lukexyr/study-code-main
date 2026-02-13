@@ -112,7 +112,7 @@ int main()
     add_song(pl[0]);
     add_song(pl[0]);
     delete_firstSong(pl[0]);
-    
+
     if (pl[0]->first != NULL)
     {
         print_playlist(pl[0]);
