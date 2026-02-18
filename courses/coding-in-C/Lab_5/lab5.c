@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 void particle_simulation(int *pField, int *pTemp, int size) {
@@ -26,26 +27,48 @@ void particle_simulation(int *pField, int *pTemp, int size) {
 
     for (int i = 0; i < size; i++) {
         pField[i] = pTemp[i];
-        printf("%d ", pField[i]);
+        printf("%d", pField[i]);
     }
 
     printf("\n");
 }
 
-int main() {
+int main(int argc, char **argv) {
 
-    int field[] = {0,1,0,1,0,1,0,0,0,0};
-    int size = sizeof(field) / sizeof(field[0]);
+    if (argc != 2) {
+        printf("Wrong number of arguments!\n");
+        return 1;
+    }
 
-    int *pTemp = calloc(size, sizeof(field[0]));
-    if (!pTemp) return 1;
+    int size = strlen(argv[1]);
+
+    int *field = calloc(size, sizeof(int));
+    if (!field) return 1;
+
+    for (int i = 0; i < size; i++) {
+        if (argv[1][i] == '0')
+            field[i] = 0;
+        else if (argv[1][i] == '1')
+            field[i] = 1;
+        else {
+            printf("Invalid character!\n");
+            free(field);
+            return 1;
+        }
+    }
+
+    int *pTemp = calloc(size, sizeof(int));
+    if (!pTemp) {
+        free(field);
+        return 1;
+    }
 
     srand(time(NULL));
 
     particle_simulation(field, pTemp, size);
-    particle_simulation(field, pTemp, size);
-    particle_simulation(field, pTemp, size);
 
     free(pTemp);
+    free(field);
+
     return 0;
 }
