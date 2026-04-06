@@ -1,15 +1,12 @@
 #include <iostream>
 #include "first_header.hpp"
 
+// Direktive zur Namensraumerweiterung
 using namespace std;
-
-void printFromHeader()
-{
-    cout << "Hello from .hpp" << endl;
-}
 
 int main()
 {
+    // output message on terminal
     cout << "Hello, World!" << endl;
     printFromHeader();
 
