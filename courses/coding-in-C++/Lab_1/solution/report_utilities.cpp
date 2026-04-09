@@ -47,10 +47,13 @@ void readScore(const std::string &text, std::uint_fast16_t &value)
 }
 
 // read in user name and all scores
-void readStudentData(std::string &name, std::uint_fast16_t &homework, std::uint_fast16_t &midterm, std::uint_fast16_t &finalExam)
+void readStudentData(std::string &name, std::uint_fast16_t &homework, std::uint_fast16_t &midterm, std::uint_fast16_t &final_exam)
 {
 
     std::cout << "Enter the student's name: ";
+
+    // removes leading whitespaces so that getline() is not immeadiately cancelled
+    std::cin >> std::ws;
 
     if (!(std::getline(std::cin, name)))
     {
@@ -59,7 +62,7 @@ void readStudentData(std::string &name, std::uint_fast16_t &homework, std::uint_
 
     readScore("Enter the homework score (0-100): ", homework);
     readScore("Enter the midterm score (0-100): ", midterm);
-    readScore("Enter the final exam score (0-100): ", finalExam);
+    readScore("Enter the final exam score (0-100): ", final_exam);
 }
 
 // calculate the final grade and also return the grade as letter
